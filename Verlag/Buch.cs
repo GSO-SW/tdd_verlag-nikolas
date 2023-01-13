@@ -34,11 +34,13 @@ namespace Verlag
         public string Autor
         {
             get { return autor;  }
+            set { autor = value; }
         }
 
         public int Auflage
         {
             get { return auflage; }
+            set { auflage = value; }
         }
 
 
