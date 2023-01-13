@@ -13,11 +13,17 @@ namespace Verlag
 
         private int auflage;
 
-        public Buch(string titel, string autor, int auflage)
+        public Buch(string titel, string autor, int auflage) : this(titel, autor)
         {
             this.titel = titel;
             this.autor = autor;
             this.auflage = auflage;
+        }
+        public Buch(string titel, string autor) 
+        {
+            this.titel = titel;
+            this.autor = autor;
+            this.auflage = 1;
         }
 
         public string Titel
