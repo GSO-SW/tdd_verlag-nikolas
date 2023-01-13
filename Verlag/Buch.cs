@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Verlag
 
         private int auflage;
 
-        public Buch(string titel, string autor, int auflage) : this(titel, autor)
+        public Buch(string autor, string titel, int auflage) : this(titel, autor)
         {
             this.titel = titel;
             this.autor = autor;
@@ -24,11 +25,25 @@ namespace Verlag
             this.auflage = auflage;
 
         }
-        public Buch(string titel, string autor) 
+        public Buch(string autor, string titel) 
         {
             this.titel = titel;
+
+            if (autor == "")
+                throw new ArgumentException();
+            if (autor == "#")
+                throw new ArgumentException();
+            if (autor == ";")
+                throw new ArgumentException();
+            if (autor == "§")
+                throw new ArgumentException();
+            if (autor == "%")
+                throw new ArgumentException();
+            if (autor == null)
+                throw new ArgumentException();
+
             this.autor = autor;
-            this.auflage = 1;
+            auflage = 1;
         }
 
         public string Titel
