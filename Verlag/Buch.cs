@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,19 +12,34 @@ namespace Verlag
     {
         private string titel;
         private string autor;
+        private string ISBN13;
 
         private int auflage;
 
-        public Buch(string autor, string titel, int auflage) : this(titel, autor)
+        public Buch(string autor, string titel, int auflage, string ISBN13) : this(autor,titel,auflage)
         {
-            this.titel = titel;
-            this.autor = autor;
-            if(auflage <= 0)
+           
+
+            ISBN13 = ISBN13.Remove(4);
+            if (ISBN13.Length == 9)
+            {
+                Random randonpruef = new Random();
+                int isbn13_RanNumber = randonpruef.Next(1000, 9999);
+                ISBN13 = $"{ISBN13}{isbn13_RanNumber}";
+            }
+
+            ISBN13 = String.Concat(4, "-");
+            this.ISBN13 = ISBN13;
+        }
+
+        public Buch(string autor, string titel, int auflage) : this(autor, titel)
+        {
+            if (auflage <= 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
             this.auflage = auflage;
-
+            
         }
         public Buch(string autor, string titel) 
         {
@@ -43,6 +59,7 @@ namespace Verlag
                 throw new ArgumentException();
 
             this.autor = autor;
+            
             auflage = 1;
         }
 
@@ -63,6 +80,13 @@ namespace Verlag
             set { if(value <= 0)
                 { throw new ArgumentOutOfRangeException(); }
                         auflage = value; }
+        }
+        public string AISBN13
+        {
+            get
+            {
+                return ISBN13;
+            }
         }
 
 

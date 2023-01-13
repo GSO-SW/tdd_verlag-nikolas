@@ -105,5 +105,19 @@ namespace VerlagTests
 			//Act
 			Buch b = new Buch(unerlaubtesZeichen, "titel");
 		}
+
+		[TestMethod]
+
+		public void Buch_ISBN13()
+		{
+			//Arrange
+			string ISBN13 = "978-3770436163";
+
+			//Act
+			Buch b = new("TestAutor", "TestTitel", 1, ISBN13);
+
+			Assert.AreEqual(ISBN13, b.AISBN13);
+
+        }
 	}
 }
